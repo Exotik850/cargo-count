@@ -18,6 +18,7 @@ pub enum Language {
     Python,
     Ruby,
     Rust,
+    Svelte,
     Xml,
     Toml,
     Go,
@@ -42,6 +43,7 @@ impl Language {
             "html" | "htm" => Some(Language::Html),
             "py" => Some(Language::Python),
             "rb" => Some(Language::Ruby),
+            "svelte" => Some(Language::Svelte),
             "php" => Some(Language::Php),
             "toml" => Some(Language::Toml),
             "pl" => Some(Language::Perl),
@@ -77,6 +79,7 @@ impl Language {
             Language::Go => "Go",
             Language::Assembly => "Assembly",
             Language::Shell => "Shell",
+            Language::Svelte => "Svelte",
             Language::D => "D",
             Language::Nim => "Nim",
         }
@@ -115,7 +118,7 @@ impl Comment for Language {
                 Some(vec!["//"])
             }
             Language::Php => Some(vec!["//", "#"]),
-            Language::Xml | Language::Html => Some(vec!["<!--"]),
+            Language::Xml | Language::Html | Language::Svelte => Some(vec!["<!--"]),
             Language::Ruby | Language::Python | Language::Toml | Language::Perl |
             Language::Assembly | Language::Shell | Language::Nim => Some(vec!["#"]),
         }
@@ -126,7 +129,7 @@ impl Comment for Language {
             Language::C | Language::Cpp | Language::Hpp | Language::Header | Language::Css |
             Language::Java | Language::JavaScript | Language::Go | Language::Rust |
             Language::Php | Language::D => Some("/*"),
-            Language::Xml | Language::Html => Some("<!--"),
+            Language::Xml | Language::Html | Language::Svelte => Some("<!--"),
             Language::Ruby => Some("=begin"),
             Language::Python => Some("'''"),
             Language::Nim => Some("#["),
@@ -139,7 +142,7 @@ impl Comment for Language {
             Language::C | Language::Cpp | Language::Hpp | Language::Header | Language::Css |
             Language::Java | Language::Go | Language::JavaScript | Language::Rust |
             Language::Php | Language::D => Some("*/"),
-            Language::Xml | Language::Html => Some("-->"),
+            Language::Xml | Language::Html | Language::Svelte => Some("-->"),
             Language::Ruby => Some("=end"),
             Language::Python => Some("'''"),
             Language::Nim => Some("]#"),
